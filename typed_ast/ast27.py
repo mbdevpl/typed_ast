@@ -111,7 +111,8 @@ def dump(node, annotate_fields=True, include_attributes=False):
                 (b for a, b in fields)
             ))
             if include_attributes and node._attributes:
-                rv += fields and ', ' or ' '
+                if fields:
+                    rv += ', '
                 rv += ', '.join('%s=%s' % (a, _format(getattr(node, a)))
                                 for a in node._attributes)
             return rv + ')'
